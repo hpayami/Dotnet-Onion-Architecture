@@ -16,7 +16,7 @@ namespace App.Tests.Infrastructure.DataAccess
         private static string _connectionString;
 
         [Fact]
-        public void Test1()
+        public void Test_ProductService()
         {
             var configBuilder = new ConfigurationBuilder();
             configBuilder.AddJsonFile("appsettings.json", optional: false);

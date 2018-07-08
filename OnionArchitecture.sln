@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{F036
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infrastructure.DataAccess", "App.Infrastructure.DataAccess\App.Infrastructure.DataAccess.csproj", "{C466C5FD-DF9F-4DE9-BD83-C43723C0790C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Tests.Infrastructure.DataAccess", "App.Tests.Infrastructure.DataAccess\App.Tests.Infrastructure.DataAccess.csproj", "{1887A762-4425-455D-9035-1AAA42E166AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Tests.Infrastructure.DataAccess", "App.Tests.Infrastructure.DataAccess\App.Tests.Infrastructure.DataAccess.csproj", "{1887A762-4425-455D-9035-1AAA42E166AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
