@@ -1,4 +1,4 @@
-# OnionArchitecture
+# Onion Architecture
 Onion Architecture example in .NET Core
 
 See: https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
