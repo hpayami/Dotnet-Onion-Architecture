@@ -36,7 +36,7 @@ namespace App.Tests.Infrastructure.DataAccess
                 Assert.NotEmpty(categories);
 
                 foreach (var category in categories)
-                    System.Diagnostics.Debug.WriteLine(string.Format("Category: {0}", category.CategoryName));
+                    System.Diagnostics.Debug.WriteLine(string.Format("Category {0}: {1}", category.CategoryId, category.CategoryName));
 
                 var products = productService.GetProducts(1);
                 Assert.NotEmpty(products);
