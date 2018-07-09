@@ -52,32 +52,28 @@ namespace App.Tests.Infrastructure.DataAccess
             }
         }
         
-        private static void ConfigureServices(IServiceCollection serviceCollection)
+        private static void ConfigureServices(IServiceCollection service, IConfiguration configuration)
         {
-            // configuration: connection string
-            var configBuilder = new ConfigurationBuilder();
-            configBuilder.AddJsonFile("appsettings.json", optional: false);
-
-            var connectionString = configBuilder.Build()
-                                                .GetConnectionString("DefaultConnection");
-
             // register objects
-            serviceCollection.AddLogging(configure => configure.AddDebug())
-                             .AddTransient<App>()
-                             .AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>()
-                             .AddTransient<IProductService, ProductService>()
-                             .AddDbContext<AppDataContext>((options => options.UseSqlServer(connectionString)));
+            service.AddLogging(configure => configure.AddDebug())
+                   .AddTransient<App>()
+                   .AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>()
+                   .AddTransient<IProductService, ProductService>()
+                   .AddDbContext<AppDataContext>((options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))));
         }
 
         [Fact]
         public void TestProductServiceDI()
         {
-            // create service collection
-            var serviceCollection = new ServiceCollection();
-            ConfigureServices(serviceCollection);
+            // service collection and configuration settings
+            var service = new ServiceCollection();
 
-            // create service provider
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+            var configurationBuilder = new ConfigurationBuilder();
+            var configuration = configurationBuilder.AddJsonFile("appsettings.json", optional: false)
+                                                    .Build();
+            // setup dependency
+            ConfigureServices(service, configuration);            
+            var serviceProvider = service.BuildServiceProvider();
 
             // entry to run app
             serviceProvider.GetService<App>().Start();
