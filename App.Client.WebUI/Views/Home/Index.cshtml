@@ -1,0 +1,14 @@
+﻿@model IEnumerable<App.Domain.Entities.Category >
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+<div>
+    @foreach (var category in @Model)
+    { 
+        <div>[@category.CategoryId] @Html.ActionLink(@category.CategoryName, "Products", new { id = category.CategoryId}) </div>
+    }
+</div>

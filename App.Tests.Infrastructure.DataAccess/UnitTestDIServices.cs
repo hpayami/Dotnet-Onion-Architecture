@@ -52,28 +52,28 @@ namespace App.Tests.Infrastructure.DataAccess
             }
         }
         
-        private static void ConfigureServices(IServiceCollection service, IConfiguration configuration)
+        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // register objects
-            service.AddLogging(configure => configure.AddDebug())
-                   .AddTransient<App>()
-                   .AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>()
-                   .AddTransient<IProductService, ProductService>()
-                   .AddDbContext<AppDataContext>((options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))));
+            services.AddLogging(configure => configure.AddDebug())
+                    .AddTransient<App>()
+                    .AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>()
+                    .AddTransient<IProductService, ProductService>()
+                    .AddDbContext<AppDataContext>((options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))));
         }
 
         [Fact]
         public void TestProductServiceDI()
         {
             // service collection and configuration settings
-            var service = new ServiceCollection();
+            var services = new ServiceCollection();
 
             var configurationBuilder = new ConfigurationBuilder();
             var configuration = configurationBuilder.AddJsonFile("appsettings.json", optional: false)
                                                     .Build();
             // setup dependency
-            ConfigureServices(service, configuration);            
-            var serviceProvider = service.BuildServiceProvider();
+            ConfigureServices(services, configuration);            
+            var serviceProvider = services.BuildServiceProvider();
 
             // entry to run app
             serviceProvider.GetService<App>().Start();
