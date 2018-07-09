@@ -1,15 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+using App.Domain.RepoInterfaces;
+using App.Domain.ServicesInterface;
+using App.Domain.ServicesInterface.Framework;
+using App.Infrastructure.DataAccess;
+using App.Infrastructure.DataAccess.Framework;
 
 using Xunit;
-using App.Domain.ServicesInterface.Framework;
-using App.Infrastructure.DataAccess.Framework;
-using App.Infrastructure.DataAccess;
-using App.Domain.RepoInterfaces.Framework;
-using App.Domain.ServicesInterface;
-using App.Domain.RepoInterfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 /******************************************************************************
  Dependency Injection Unit Test: Using a test service
