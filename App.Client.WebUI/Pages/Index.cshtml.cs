@@ -9,6 +9,8 @@ namespace App.Client.WebUI.Pages
     {
         public IEnumerable<Category> Categories { get; set; }
 
+        public IEnumerable<Product> Products { get; set; }
+
         private IProductService _productService;
 
         public IndexModel(IProductService productService)
@@ -19,6 +21,8 @@ namespace App.Client.WebUI.Pages
         public void OnGet()
         {
             Categories = _productService.GetCategories();
+
+            Products = _productService.GetProducts(1);
         }
     }
 }

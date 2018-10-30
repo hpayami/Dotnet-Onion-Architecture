@@ -1,5 +1,5 @@
-﻿using App.Domain.Interfaces;
-using App.Domain.Application;
+﻿using App.Domain.Application;
+using App.Domain.Interfaces;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
@@ -15,17 +15,9 @@ namespace App.Tests.Infrastructure.DataAccess
         [Fact]
         public void Test_ProductService()
         {
-            var configBuilder = new ConfigurationBuilder();
-            configBuilder.AddJsonFile("appsettings.json", optional: false);
+            DbContextOptions options = GetConnectionDetails();
 
-            var configuration = configBuilder.Build();
-
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            DbContextOptionsBuilder optionsBuilder = new DbContextOptionsBuilder();
-            optionsBuilder.UseSqlServer(_connectionString);
-
-            using (CatalogueUnitOfWork catalogueUnitOfWork = new CatalogueUnitOfWork(new AppDataContext(optionsBuilder.Options)))            
+            using (CatalogueUnitOfWork catalogueUnitOfWork = new CatalogueUnitOfWork(new AppDataContext(options)))
             {
                 IProductService productService = new ProductService(catalogueUnitOfWork);
 
@@ -40,8 +32,24 @@ namespace App.Tests.Infrastructure.DataAccess
 
                 foreach (var product in products)
                     System.Diagnostics.Debug.WriteLine(string.Format("Product: {0} ${1}", product.ProductName, product.UnitPrice));
-
             }
+        }
+
+        private static DbContextOptions GetConnectionDetails()
+        {
+            var configBuilder = new ConfigurationBuilder();
+
+            configBuilder.AddJsonFile("appsettings.json", optional: false);
+
+            var configuration = configBuilder.Build();
+
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            DbContextOptionsBuilder optionsBuilder = new DbContextOptionsBuilder();
+
+            optionsBuilder.UseSqlServer(_connectionString);
+
+            return optionsBuilder.Options;
         }
     }
 }

@@ -9,8 +9,4 @@
     <ProjectReference Include="..\App.Domain.Interfaces\App.Domain.Interfaces.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Framework\" />
-  </ItemGroup>
-
 </Project>

@@ -5,8 +5,19 @@
 }
 
 <div class="container">
+
+    <h3>Categories</h3>
+
     @foreach (Category category in Model.Categories)
     {
         <div>[@(category.CategoryId)] @category.CategoryName</div>
     }
+
+    <h3>Products</h3>
+
+    @foreach (Product product in Model.Products)
+    {
+        <div>[@(product.ProductId)] @product.ProductName</div>
+    }
+
 </div>
