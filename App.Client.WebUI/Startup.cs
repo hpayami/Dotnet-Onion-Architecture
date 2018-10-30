@@ -1,3 +1,4 @@
+using App.Domain.Interfaces;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,12 +22,10 @@ namespace App.Client.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDataContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<AppDataContext>();
-
+            services.AddDbContext<AppDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDataContext>();
+            services.AddTransient<ICatalogueUnitOfWork, App.Infrastructure.DataAccess.CatalogueUnitOfWork>();
+            services.AddTransient<IProductService, App.Domain.Application.ProductService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -42,7 +41,7 @@ namespace App.Client.WebUI
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                // app.UseHsts();
             }
 
             app.UseHttpsRedirection();
