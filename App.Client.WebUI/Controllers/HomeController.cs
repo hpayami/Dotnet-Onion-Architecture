@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using App.Client.WebUI.Models;
 
-using App.Domain.ServicesInterface.Framework;
+using App.Domain.Interfaces;
 
 namespace App.Client.WebUI.Controllers
 {

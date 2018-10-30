@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D6FBD0AD-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Entities", "App.Domain.Entities\App.Domain.Entities.csproj", "{D933EA16-7EF6-4DFB-A828-F83FF325A68D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.RepoInterfaces", "App.Domain.Interfaces\App.Domain.RepoInterfaces.csproj", "{E90233B1-75AA-400E-8AD1-C28FCEB4A706}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Interfaces", "App.Domain.Interfaces\App.Domain.Interfaces.csproj", "{E90233B1-75AA-400E-8AD1-C28FCEB4A706}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.ServicesInterface", "App.Domain.ServicesInterface\App.Domain.ServicesInterface.csproj", "{C83EA9B6-EE6D-4AD4-981B-90E34617DF26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Application", "App.Domain.ServicesInterface\App.Domain.Application.csproj", "{C83EA9B6-EE6D-4AD4-981B-90E34617DF26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CDDFF3FD-9437-404C-84A1-F07829D57EF1}"
 EndProject
@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Tests.Infrastructure.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Client.ConsoleUI", "App.Client.ConsoleUI\App.Client.ConsoleUI.csproj", "{76A32802-F087-449F-AA8F-A3A876FC218B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Client.WebUI", "App.Client.WebUI\App.Client.WebUI.csproj", "{D25EE845-CDC6-4BCE-AB71-B1FE9CB4A6D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Client.WebUI", "App.Client.WebUI\App.Client.WebUI.csproj", "{D25EE845-CDC6-4BCE-AB71-B1FE9CB4A6D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

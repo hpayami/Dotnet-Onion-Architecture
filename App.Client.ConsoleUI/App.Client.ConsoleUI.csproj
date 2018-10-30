@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\App.Domain.Entities\App.Domain.Entities.csproj" />
-    <ProjectReference Include="..\App.Domain.Interfaces\App.Domain.RepoInterfaces.csproj" />
-    <ProjectReference Include="..\App.Domain.ServicesInterface\App.Domain.ServicesInterface.csproj" />
+    <ProjectReference Include="..\App.Domain.Interfaces\App.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\App.Domain.ServicesInterface\App.Domain.Application.csproj" />
     <ProjectReference Include="..\App.Infrastructure.DataAccess\App.Infrastructure.DataAccess.csproj" />
   </ItemGroup>
 

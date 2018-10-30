@@ -1,6 +1,7 @@
 ﻿using App.Domain.Entities;
+using App.Domain.Interfaces.Framework;
 
-namespace App.Domain.RepoInterfaces
+namespace App.Domain.Interfaces
 {
     public interface IProductRepository : IReadonlyRespository<int, Product>
     {

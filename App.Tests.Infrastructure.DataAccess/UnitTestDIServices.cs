@@ -1,14 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using App.Domain.Interfaces;
+using App.Domain.Application;
+using App.Infrastructure.DataAccess;
+using App.Infrastructure.DataAccess.Framework;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
-using App.Domain.RepoInterfaces;
-using App.Domain.ServicesInterface;
-using App.Domain.ServicesInterface.Framework;
-using App.Infrastructure.DataAccess;
-using App.Infrastructure.DataAccess.Framework;
-
 using Xunit;
 
 /******************************************************************************

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace App.Domain.RepoInterfaces
+namespace App.Domain.Interfaces.Framework
 {
     /// <summary>
     /// Respository is a collection like interface to an TEntity with a TKey

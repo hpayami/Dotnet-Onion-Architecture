@@ -1,4 +1,4 @@
-﻿using App.Domain.RepoInterfaces;
+﻿using App.Domain.Interfaces;
 using App.Infrastructure.DataAccess.Framework;
 
 namespace App.Infrastructure.DataAccess

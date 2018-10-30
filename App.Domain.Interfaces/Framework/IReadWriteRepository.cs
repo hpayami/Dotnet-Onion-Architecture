@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace App.Domain.RepoInterfaces
+namespace App.Domain.Interfaces.Framework
 {
     /// <summary>
     /// Respository is a collection like interface to an TEntity with a TKey

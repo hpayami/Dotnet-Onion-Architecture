@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using App.Domain.Entities;
-using App.Domain.RepoInterfaces;
-using App.Domain.ServicesInterface.Framework;
+using App.Domain.Interfaces;
 
-namespace App.Domain.ServicesInterface
+namespace App.Domain.Application
 {
     public class ProductService : IProductService
     {

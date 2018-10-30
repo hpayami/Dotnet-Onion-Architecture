@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-using App.Domain.RepoInterfaces;
+using App.Domain.Interfaces.Framework;
 
 namespace App.Infrastructure.DataAccess.Framework
 {

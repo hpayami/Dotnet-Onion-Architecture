@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using App.Domain.Entities;
 
-namespace App.Domain.ServicesInterface.Framework
+namespace App.Domain.Interfaces
 {
     public interface IProductService
     {

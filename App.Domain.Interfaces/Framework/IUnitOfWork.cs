@@ -1,4 +1,4 @@
-﻿namespace App.Domain.RepoInterfaces.Framework
+﻿namespace App.Domain.Interfaces.Framework
 {
     public interface IUnitOfWork
     {

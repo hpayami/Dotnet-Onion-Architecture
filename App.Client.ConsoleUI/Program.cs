@@ -3,8 +3,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-using App.Domain.ServicesInterface;
-using App.Domain.ServicesInterface.Framework;
+using App.Domain.Interfaces;
+using App.Domain.Application;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.Framework;
 
