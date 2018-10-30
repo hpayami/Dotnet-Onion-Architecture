@@ -26,7 +26,7 @@ Drop-Database -Project App.Infrastructure.DataAccess -Context AppDataContext
 #                       Apply database with Migrations                        #
 ###############################################################################
 
-Update-Database -Project App.Infrastructure.DataAccess -Context AppDbContext  
+Update-Database -Project App.Infrastructure.DataAccess -Context AppDataContext  
 
 ###############################################################################
 #                               Add Migrations                                #
@@ -34,8 +34,8 @@ Update-Database -Project App.Infrastructure.DataAccess -Context AppDbContext
 
 #--->> Replace <<NAME>> with the actual name of the migration
 
-Add-Migration -name <<NAME>> -Project App.Infrastructure.DataAccess -Context AppDbContext  
-Update-Database -Project App.Infrastructure.DataAccess -Context AppDbContext
+Add-Migration -name <<NAME>> -Project App.Infrastructure.DataAccess -Context AppDataContext  
+Update-Database -Project App.Infrastructure.DataAccess -Context AppDataContext
 
 ###############################################################################
 #            Drop Database/Update Migrations/Create Database                  #
@@ -43,7 +43,7 @@ Update-Database -Project App.Infrastructure.DataAccess -Context AppDbContext
 
 #--->> Delete the Migration folder before executing
 
-Drop-Database -Project App.lnfrastructure.DataAccess -Context AppDbContext
+Drop-Database -Project App.lnfrastructure.DataAccess -Context AppDataContext
 
-Add-Migration -name Initial -Project App.Infrastructure.DataAccess -Context AppDbContext  
+Add-Migration -name Initial -Project App.Infrastructure.DataAccess -Context AppDataContext  
 Update-Database -Project App.Infrastructure.DataAccess -Context LocalizationDbContext  

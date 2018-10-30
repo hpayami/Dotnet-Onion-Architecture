@@ -1,5 +1,5 @@
 ﻿using App.Domain.Interfaces;
-using App.Infrastructure.DataAccess.Framework;
+using App.Infrastructure.DataAccess.DataContext;
 
 namespace App.Infrastructure.DataAccess
 {

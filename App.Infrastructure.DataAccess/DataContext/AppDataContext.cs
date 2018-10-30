@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using App.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-
-using App.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 
-namespace App.Infrastructure.DataAccess.Framework
+namespace App.Infrastructure.DataAccess.DataContext
 {
     public class AppDataContext : IdentityDbContext
     {
@@ -18,6 +17,8 @@ namespace App.Infrastructure.DataAccess.Framework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category() { CategoryId = 1, CategoryName = "Kid's Shoes" },
                 new Category() { CategoryId = 2, CategoryName = "Men's Shoes" },

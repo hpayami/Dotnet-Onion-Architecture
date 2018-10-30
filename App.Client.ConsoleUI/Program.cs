@@ -1,12 +1,10 @@
 ﻿using System;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
 using App.Domain.Interfaces;
 using App.Domain.Application;
 using App.Infrastructure.DataAccess;
-using App.Infrastructure.DataAccess.Framework;
+using App.Infrastructure.DataAccess.DataContext;
 
 namespace App.Client.ConsoleUI
 {
