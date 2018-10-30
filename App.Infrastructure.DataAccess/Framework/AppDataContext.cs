@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 using App.Domain.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace App.Infrastructure.DataAccess.Framework
 {
-    public class AppDataContext : DbContext
+    public class AppDataContext : IdentityDbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -40,12 +42,18 @@ namespace App.Infrastructure.DataAccess.Framework
     /// <summary>
     /// See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory
     /// </summary>
-    public class AppDataDbContextFactory : IDesignTimeDbContextFactory<AppDataContext>
+    public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<AppDataContext>
     {
         public AppDataContext CreateDbContext(string[] args)
         {
+            var configBuilder = new ConfigurationBuilder();
+            configBuilder.AddJsonFile("appsettings.json", optional: false);
+
+            var configuration = configBuilder.Build();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
             var builder = new DbContextOptionsBuilder<AppDataContext>();
-            builder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='C:\\Users\\Kam\\Source\\Repos\\OnionArchitecture\\App.Infrastructure.DataAccess\\App_Data\\CatalogueDatabase.mdf';Integrated Security=True");
+            builder.UseSqlServer(connectionString);
 
             return new AppDataContext(builder.Options);
         }

@@ -11,7 +11,7 @@ To open the Package Manager console:
 ###############################################################################
 -- See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell#script-migration
 
-Script-Migration -From 0 -Project App.lnfrastructure.DataAccess -Context AppDataContext 
+Script-Migration -From 0 -Project App.Infrastructure.DataAccess -Context AppDataContext 
 
 -- You can generate the SQL script _from_ a named migration, for example -From 20181009200053_AddTestwebuser
    will generate the SQL after 20181009200053_AddTestwebuser (not including this one)
@@ -20,13 +20,13 @@ Script-Migration -From 0 -Project App.lnfrastructure.DataAccess -Context AppData
 #                             Drop the database                               #
 ###############################################################################
 
-Drop-Database -Project App.lnfrastructure.DataAccess -Context AppDataContext
+Drop-Database -Project App.Infrastructure.DataAccess -Context AppDataContext
 
 ###############################################################################
 #                       Apply database with Migrations                        #
 ###############################################################################
 
-Update-Database -Project App.lnfrastructure.DataAccess -Context AppDbContext  
+Update-Database -Project App.Infrastructure.DataAccess -Context AppDbContext  
 
 ###############################################################################
 #                               Add Migrations                                #
@@ -34,8 +34,8 @@ Update-Database -Project App.lnfrastructure.DataAccess -Context AppDbContext
 
 #--->> Replace <<NAME>> with the actual name of the migration
 
-Add-Migration -name <<NAME>> -Project App.lnfrastructure.DataAccess -Context AppDbContext  
-Update-Database -Project App.lnfrastructure.DataAccess -Context AppDbContext
+Add-Migration -name <<NAME>> -Project App.Infrastructure.DataAccess -Context AppDbContext  
+Update-Database -Project App.Infrastructure.DataAccess -Context AppDbContext
 
 ###############################################################################
 #            Drop Database/Update Migrations/Create Database                  #
@@ -45,5 +45,5 @@ Update-Database -Project App.lnfrastructure.DataAccess -Context AppDbContext
 
 Drop-Database -Project App.lnfrastructure.DataAccess -Context AppDbContext
 
-Add-Migration -name Initial -Project App.lnfrastructure.DataAccess -Context AppDbContext  
-Update-Database -Project App.lnfrastructure.DataAccess -Context LocalizationDbContext  
+Add-Migration -name Initial -Project App.Infrastructure.DataAccess -Context AppDbContext  
+Update-Database -Project App.Infrastructure.DataAccess -Context LocalizationDbContext  
