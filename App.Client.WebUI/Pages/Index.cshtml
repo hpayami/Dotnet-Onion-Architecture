@@ -17,7 +17,7 @@
 
     @foreach (Product product in Model.Products)
     {
-        <div>[@(product.ProductId)] @product.ProductName</div>
+        <div>[@(product.ProductId)] @product.ProductName $@product.UnitPrice.ToString("F2")</div>
     }
 
 </div>
