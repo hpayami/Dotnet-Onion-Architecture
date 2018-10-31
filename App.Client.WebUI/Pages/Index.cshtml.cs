@@ -2,6 +2,7 @@
 using App.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace App.Client.WebUI.Pages
 {
@@ -18,11 +19,11 @@ namespace App.Client.WebUI.Pages
             _productService = productService;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Categories = _productService.GetCategories();
+            Categories = await _productService.GetCategoriesAsync();
 
-            Products = _productService.GetProducts(1);
+            Products = await _productService.GetProductsAsync(1);
         }
     }
 }

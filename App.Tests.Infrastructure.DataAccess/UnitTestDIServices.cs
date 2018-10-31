@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit;
+using System.Threading.Tasks;
 
 /******************************************************************************
  Dependency Injection Unit Test: Using a test service
@@ -29,23 +30,23 @@ namespace App.Tests.Infrastructure.DataAccess
                 _logger = logger;
             }
 
-            public void Start()
+            public async Task Start()
             {
                 _logger.LogInformation("Starting...");
 
-                var categories = _productService.GetCategories();
+                var categories = await _productService.GetCategoriesAsync();
                 Assert.NotEmpty(categories);
 
                 foreach (var category in categories)
                     _logger.LogInformation(string.Format("Category {0}: {1}", category.CategoryId, category.CategoryName));
 
-                var products = _productService.GetProducts(1);
+                var products = await _productService.GetProductsAsync(1);
                 Assert.NotEmpty(products);
 
                 foreach (var product in products)
                     _logger.LogInformation(string.Format("Product: {0} ${1}", product.ProductName, product.UnitPrice));
 
-                _logger.LogInformation("Completed.");
+                _logger.LogInformation("Completed.");                
             }
         }
         

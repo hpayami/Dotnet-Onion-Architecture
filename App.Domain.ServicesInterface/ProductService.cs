@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using App.Domain.Entities;
 using App.Domain.Interfaces;
 
@@ -15,21 +16,22 @@ namespace App.Domain.Application
             _catalogueUnitOfWork = catalogueUnitOfWork;
         }
 
-        public IEnumerable<Category> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             // Return all categories
-            IEnumerable<Category> categories = _catalogueUnitOfWork.CategoryRepository.GetAll();
+            IEnumerable<Category> categories = await _catalogueUnitOfWork.CategoryRepository.FindAllAsync();
+
             return categories;
         }
 
-        public IEnumerable<Product> GetProducts(int? categoryId)
+        public async Task<IEnumerable<Product>> GetProductsAsync(int? categoryId)
         {
             // Return products by category or none if no category specified
             IEnumerable<Product> products = Enumerable.Empty<Product>();
 
             if (categoryId != null)
             {
-                products = _catalogueUnitOfWork.ProductRepository.Get(product => product.Category.CategoryId == categoryId);
+                products = await _catalogueUnitOfWork.ProductRepository.FindAsync(product => product.Category.CategoryId == categoryId);
             }
 
             return products;

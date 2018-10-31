@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using App.Domain.Entities;
 
 namespace App.Domain.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<Category> GetCategories();
-        IEnumerable<Product> GetProducts(int? categoryId);
+        Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<IEnumerable<Product>> GetProductsAsync(int? categoryId);
     }
 }

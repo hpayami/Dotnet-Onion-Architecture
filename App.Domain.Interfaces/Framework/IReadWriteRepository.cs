@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace App.Domain.Interfaces.Framework
 {
@@ -7,14 +8,17 @@ namespace App.Domain.Interfaces.Framework
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IReadWriteRepository<TKey, TEntity> : IReadonlyRespository<TKey, TEntity> where TEntity : class
+    public interface IReadWriteRepository<TKey, TEntity> : IReadOnlyRepository<TKey, TEntity> where TEntity : class
     {
         // Add
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
+        Task AddAsync(TEntity entity);
+        Task AddRangeAsync(IEnumerable<TEntity> entities);
 
         // Remove     
-        void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
+        Task RemoveAsync(TEntity entity);
+        Task RemoveRangeAsync(IEnumerable<TEntity> entities);
+
+        // update     
+        Task UpdateAsync(TEntity entity);
     }
 }

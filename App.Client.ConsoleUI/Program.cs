@@ -5,12 +5,13 @@ using App.Domain.Interfaces;
 using App.Domain.Application;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
+using System.Threading.Tasks;
 
 namespace App.Client.ConsoleUI
 {
     class Program
     {
-        static void GetCatalogue()
+        static async Task GetCatalogue()
         {
             var configBuilder = new ConfigurationBuilder();
             configBuilder.AddJsonFile("appsettings.json", optional: false);
@@ -26,16 +27,15 @@ namespace App.Client.ConsoleUI
             {
                 IProductService productService = new ProductService(catalogueUnitOfWork);
 
-                var categories = productService.GetCategories();
+                var categories = await productService.GetCategoriesAsync();
 
                 foreach (var category in categories)
                     Console.WriteLine(string.Format("Category {0}: {1}", category.CategoryId, category.CategoryName));
 
-                var products = productService.GetProducts(1);
+                var products = await productService.GetProductsAsync(1);
 
                 foreach (var product in products)
                     Console.WriteLine(string.Format("Product: {0} ${1}", product.ProductName, product.UnitPrice));
-
             }
         }
 
@@ -43,7 +43,7 @@ namespace App.Client.ConsoleUI
         {
             Console.WriteLine("Open Catalogue...");
 
-            GetCatalogue();
+            GetCatalogue().GetAwaiter().GetResult();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();

@@ -1,70 +1,77 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 using App.Domain.Interfaces.Framework;
 
 namespace App.Infrastructure.DataAccess.Framework
 {
     /// <summary>
-    /// Entity Framework Read Write Repository
+    /// Read Write Entity Framework Repository
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class EFReadWriteRepository<TKey, TEntity> : IReadWriteRepository<TKey, TEntity> where TEntity : class
+    public abstract class ReadWriteEFRespository<TKey, TEntity> : ReadOnlyEFRespository<TKey, TEntity>, IReadWriteRepository<TKey, TEntity> where TEntity : class
     {
-        protected readonly DbContext Context;
+        /// <summary>
+        /// Read Write Entity Framework Repository constructor
+        /// </summary>
+        /// <param name="context"></param>
+        public ReadWriteEFRespository(DbContext context) : base(context) { }
 
-        public EFReadWriteRepository(DbContext context)
+        /// <summary>
+        /// Add an entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task AddAsync(TEntity entity)
         {
-            Context = context;
+            await _context.Set<TEntity>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public void Add(TEntity entity)
+        /// <summary>
+        /// Add a range of entities
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
-            Context.Set<TEntity>().Add(entity);
+            await _context.Set<TEntity>().AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        /// <summary>
+        /// Remove an entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task RemoveAsync(TEntity entity)
         {
-            Context.Set<TEntity>().AddRange(entities);
+            _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
+        /// <summary>
+        /// Remove a range of entities
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public async Task RemoveRangeAsync(IEnumerable<TEntity> entities)
         {
-            return Context.Set<TEntity>().Where(filter);
+            _context.Set<TEntity>().RemoveRange(entities);
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter, int pageIndex, int pageSize)
+        /// <summary>
+        /// Update an entity
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task UpdateAsync(TEntity entity)
         {
-            return Context.Set<TEntity>().Where(filter).Skip((pageSize - 1) * pageIndex).Take(pageSize);
-        }
-
-        public TEntity Get(TKey key)
-        {
-            return Context.Set<TEntity>().Find(key);
-        }
-
-        public IEnumerable<TEntity> GetAll()
-        {
-            return Context.Set<TEntity>().ToList();
-        }
-
-        public IEnumerable<TEntity> GetAll(int pageIndex, int pageSize)
-        {
-            return Context.Set<TEntity>().Skip((pageSize - 1) * pageIndex).Take(pageSize);
-        }
-
-        public void Remove(TEntity entity)
-        {
-            Context.Set<TEntity>().Remove(entity);
-        }
-
-        public void RemoveRange(IEnumerable<TEntity> entities)
-        {
-            Context.Set<TEntity>().RemoveRange(entities);
+            _context.Set<TEntity>().Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -1,50 +1,153 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
-
+using System.Threading.Tasks;
+using App.Domain.Entities;
+using App.Domain.Interfaces;
 using App.Domain.Interfaces.Framework;
 
 namespace App.Infrastructure.DataAccess.Framework
 {
     /// <summary>
-    /// Entity Framework Readonly Repository
+    /// Read Only Entity Framework Repository
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class EFReadonlyRepository<TKey, TEntity> : IReadonlyRespository<TKey, TEntity> where TEntity : class
+    public abstract class ReadOnlyEFRespository<TKey, TEntity> : IReadOnlyRepository<TKey, TEntity> where TEntity : class
     {
-        protected readonly DbContext Context;
+        protected readonly DbContext _context;
 
-        public EFReadonlyRepository(DbContext context)
+        /// <summary>
+        /// Read Only Entity Framework Repository constructor
+        /// </summary>
+        /// <param name="context"></param>
+        public ReadOnlyEFRespository(DbContext context)
         {
-            Context = context;
+            _context = context;
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
+        public async Task<TEntity> FindAsync(TKey key)
         {
-            return Context.Set<TEntity>().Where(filter);
+            return await _context.Set<TEntity>().FindAsync(key);
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter, int pageIndex, int pageSize)
+        /// <summary>
+        /// Find using a filter
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter)
         {
-            return Context.Set<TEntity>().Where(filter).Skip((pageSize - 1) * pageIndex).Take(pageSize);
+            return await _context.Set<TEntity>().Where(filter).ToListAsync(); ;
         }
 
-        public TEntity Get(TKey key)
+        /// <summary>
+        /// Find using a filter, paginate the results
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> FindAsync<TOrderKey>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderKey>> order, OrderDirection orderDirection)
         {
-            return Context.Set<TEntity>().Find(key);
+            int count = await _context.Set<TEntity>().Where(filter).CountAsync();
+            List<TEntity> items;
+
+            if (orderDirection == OrderDirection.Asending)
+                items = await _context.Set<TEntity>().Where(filter).OrderBy(order).ToListAsync();
+            else
+                items = await _context.Set<TEntity>().Where(filter).OrderByDescending(order).ToListAsync();
+
+            return items;
         }
 
-        public IEnumerable<TEntity> GetAll()
+
+        /// <summary>
+        /// Find using a filter, paginate the results
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<PaginatedList<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter, int pageIndex, int pageSize)
         {
-            return Context.Set<TEntity>().ToList();
+            int count = await _context.Set<TEntity>().Where(filter).CountAsync();
+            List<TEntity> items = await _context.Set<TEntity>().Where(filter).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return new PaginatedList<TEntity>(items, count, pageIndex, pageSize);
         }
 
-        public IEnumerable<TEntity> GetAll(int pageIndex, int pageSize)
+        /// <summary>
+        /// Find using a filter, paginate the results
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<PaginatedList<TEntity>> FindAsync<TOrderKey>(Expression<Func<TEntity, bool>> filter, Expression<Func<TEntity, TOrderKey>> order, OrderDirection orderDirection, int pageIndex, int pageSize)
         {
-            return Context.Set<TEntity>().Skip((pageSize - 1) * pageIndex).Take(pageSize);
+            int count = await _context.Set<TEntity>().Where(filter).CountAsync();
+            List<TEntity> items;
+
+            if (orderDirection == OrderDirection.Asending)
+                items = await _context.Set<TEntity>().Where(filter).OrderBy(order).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            else
+                items = await _context.Set<TEntity>().Where(filter).OrderByDescending(order).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return new PaginatedList<TEntity>(items, count, pageIndex, pageSize);
+        }
+
+        /// <summary>
+        /// Return all records
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> FindAllAsync()
+        {
+            return await _context.Set<TEntity>().ToListAsync();
+        }
+
+        /// <summary>
+        /// Return all records, paginate the results
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<PaginatedList<TEntity>> FindAllAsync(int pageIndex, int pageSize)
+        {
+            int count = await _context.Set<TEntity>().CountAsync();
+            List<TEntity> items = await _context.Set<TEntity>().Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return new PaginatedList<TEntity>(items, count, pageIndex, pageSize);
+        }
+
+        /// <summary>
+        /// Return all records, paginate the results
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<PaginatedList<TEntity>> FindAllAsync<TOrderKey>(Expression<Func<TEntity, TOrderKey>> order, OrderDirection orderDirection, int pageIndex, int pageSize)
+        {
+            int count = await _context.Set<TEntity>().CountAsync();
+            List<TEntity> items;
+
+            if (orderDirection == OrderDirection.Asending)
+                items = await _context.Set<TEntity>().OrderBy(order).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            else
+                items = await _context.Set<TEntity>().OrderByDescending(order).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            return new PaginatedList<TEntity>(items, count, pageIndex, pageSize);
+        }
+
+        /// <summary>
+        /// Dispose of the context since we are done with the repository
+        /// </summary>
+        public void Dispose()
+        {
+            if (_context != null)
+                _context.Dispose();
         }
     }
 }

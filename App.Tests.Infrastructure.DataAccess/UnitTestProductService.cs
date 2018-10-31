@@ -4,6 +4,7 @@ using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace App.Tests.Infrastructure.DataAccess
@@ -13,7 +14,7 @@ namespace App.Tests.Infrastructure.DataAccess
         private static string _connectionString;
 
         [Fact]
-        public void Test_ProductService()
+        public async Task Test_ProductService()
         {
             DbContextOptions options = GetConnectionDetails();
 
@@ -21,13 +22,13 @@ namespace App.Tests.Infrastructure.DataAccess
             {
                 IProductService productService = new ProductService(catalogueUnitOfWork);
 
-                var categories = productService.GetCategories();
+                var categories = await productService.GetCategoriesAsync();
                 Assert.NotEmpty(categories);
 
                 foreach (var category in categories)
                     System.Diagnostics.Debug.WriteLine(string.Format("Category {0}: {1}", category.CategoryId, category.CategoryName));
 
-                var products = productService.GetProducts(1);
+                var products = await productService.GetProductsAsync(1);
                 Assert.NotEmpty(products);
 
                 foreach (var product in products)
