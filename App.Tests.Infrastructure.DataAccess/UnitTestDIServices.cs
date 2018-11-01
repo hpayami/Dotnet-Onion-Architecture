@@ -61,7 +61,7 @@ namespace App.Tests.Infrastructure.DataAccess
         }
 
         [Fact]
-        public void TestProductServiceDI()
+        public async Task TestProductServiceDI()
         {
             // service collection and configuration settings
             var services = new ServiceCollection();
@@ -74,7 +74,7 @@ namespace App.Tests.Infrastructure.DataAccess
             var serviceProvider = services.BuildServiceProvider();
 
             // entry to run app
-            serviceProvider.GetService<App>().Start();
+            await serviceProvider.GetService<App>().Start();
         }
     }
 }
