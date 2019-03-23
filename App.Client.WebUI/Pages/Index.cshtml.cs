@@ -12,6 +12,8 @@ namespace App.Client.WebUI.Pages
 
         public IEnumerable<Product> Products { get; set; }
 
+        public IEnumerable<Category> CategoriesWithProducts { get; set; }
+
         private IProductService _productService;
 
         public IndexModel(IProductService productService)
@@ -24,6 +26,8 @@ namespace App.Client.WebUI.Pages
             Categories = await _productService.GetCategoriesAsync();
 
             Products = await _productService.GetProductsAsync(1);
+
+            CategoriesWithProducts = await _productService.GetCategoriesWithProductsAsync();
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-using App.Domain.Entities;
+﻿using App.Domain.Entities;
 using App.Domain.Interfaces;
-using App.Domain.Interfaces.Framework;
+using App.Infrastructure.DataAccess.DataContext;
 using App.Infrastructure.DataAccess.Framework;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace App.Infrastructure.DataAccess
 {
@@ -11,6 +12,11 @@ namespace App.Infrastructure.DataAccess
     {
         public CategoryRepository(DbContext context) : base(context)
         {
+        }
+
+        public async Task<IEnumerable<Category>> GetCategoryWithProductsAsync()
+        {
+            return await ((AppDataContext)_context).Categories.Include(p => p.Products).ToListAsync();
         }
     }
 }

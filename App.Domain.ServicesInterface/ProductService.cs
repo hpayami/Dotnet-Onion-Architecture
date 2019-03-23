@@ -19,22 +19,21 @@ namespace App.Domain.Application
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             // Return all categories
-            IEnumerable<Category> categories = await _catalogueUnitOfWork.CategoryRepository.FindAllAsync();
-
-            return categories;
+            return await _catalogueUnitOfWork.CategoryRepository.FindAllAsync(); ;
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync(int? categoryId)
         {
             // Return products by category or none if no category specified
-            IEnumerable<Product> products = Enumerable.Empty<Product>();
-
             if (categoryId != null)
-            {
-                products = await _catalogueUnitOfWork.ProductRepository.FindAsync(product => product.Category.CategoryId == categoryId);
-            }
+                return await _catalogueUnitOfWork.ProductRepository.FindAsync(product => product.Category.CategoryId == categoryId);
+            else
+                return Enumerable.Empty<Product>();
+        }
 
-            return products;
+        public async Task<IEnumerable<Category>> GetCategoriesWithProductsAsync()
+        {
+            return await _catalogueUnitOfWork.CategoryRepository.GetCategoryWithProductsAsync();
         }
     }
 }
