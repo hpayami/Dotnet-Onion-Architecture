@@ -5,37 +5,4 @@
     ViewData["Title"] = "Home page";
 }
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>All Categories</h3>
-
-                @foreach (Category category in Model.Categories)
-                {
-                    <div>[@(category.CategoryId)] @category.CategoryName</div>
-                }
-
-                <h3>All Products</h3>
-
-                @foreach (Product product in Model.Products)
-                {
-                    <div>[@(product.ProductId)] @product.ProductName $@product.UnitPrice.ToString("F2")</div>
-                }
-            </div>
-            <div class="col-md-6">
-                <h3>Categories with Products</h3>
-
-                @foreach (Category category in Model.CategoriesWithProducts)
-                {
-                    <div>[@(category.CategoryId)] @category.CategoryName</div>
-
-                    <ul>
-                        @foreach (Product product in category.Products)
-                        {
-                            <li>[@(product.ProductId)] @product.ProductName $@product.UnitPrice.ToString("F2")</li>
-                        }
-                    </ul>
-                }
-            </div>
-        </div>
-    </div>
+<h3><a asp-page="./Categories">Shop</a></h3>

@@ -1,0 +1,33 @@
+﻿@page
+@model App.Client.WebUI.Pages.ProductsModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+@if (Model.Products.Count() > 0)
+{
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>@item.ProductId</td>
+            <td>@item.ProductName</td>
+        </tr>
+    }
+</table>
+}
+else
+{ 
+    <h3>Sorry, no product available for this category.</h3>
+}
+
+<div class="mt-3">Return to <a asp-page="./Categories">Categories</a></div>
+

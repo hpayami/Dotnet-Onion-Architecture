@@ -1,0 +1,23 @@
+﻿@page
+@model App.Client.WebUI.Pages.CategoriesModel
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h2>Categories</h2>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+    </tbody>
+    @foreach (var item in Model.Categories)
+    {
+        <tr>
+            <td>@item.CategoryId</td>
+            <td><a asp-page="./Products" asp-route-id="@item.CategoryId">@item.CategoryName</a></td>
+        </tr>
+    }
+</table>
