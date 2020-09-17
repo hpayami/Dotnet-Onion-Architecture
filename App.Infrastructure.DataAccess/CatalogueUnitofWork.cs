@@ -1,5 +1,6 @@
 ﻿using App.Domain.Interfaces;
 using App.Infrastructure.DataAccess.DataContext;
+using System.Threading.Tasks;
 
 namespace App.Infrastructure.DataAccess
 {
@@ -18,10 +19,10 @@ namespace App.Infrastructure.DataAccess
             CategoryRepository = new CategoryRepository(_context);
         }
 
-        public int Commit()
+        public async Task<int> CommitAsync()
         {
             // read-only
-            return 0;
+            return await _context.SaveChangesAsync(); ;
         }
 
         public void Dispose()

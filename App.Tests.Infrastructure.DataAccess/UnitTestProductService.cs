@@ -16,7 +16,7 @@ namespace App.Tests.Infrastructure.DataAccess
         private static string _connectionString;
 
         [Fact]
-        public async Task Test_GetCategoriesandProducts()
+        public async Task Test_GetCategoriesAndProducts()
         {
             DbContextOptions options = GetConnectionDetails();
 
@@ -48,6 +48,7 @@ namespace App.Tests.Infrastructure.DataAccess
                 IProductService productService = new ProductService(catalogueUnitOfWork);
 
                 Category category = await productService.AddCategory($"New Category {DateTime.Now.Ticks}");
+                await catalogueUnitOfWork.CommitAsync();
 
                 System.Diagnostics.Debug.WriteLine($"{category.CategoryId} {category.CategoryName}");
             }

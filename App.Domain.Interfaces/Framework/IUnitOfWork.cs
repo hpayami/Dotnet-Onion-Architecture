@@ -1,7 +1,9 @@
-﻿namespace App.Domain.Interfaces.Framework
+﻿using System.Threading.Tasks;
+
+namespace App.Domain.Interfaces.Framework
 {
     public interface IUnitOfWork
     {
-        int Commit();
+        Task<int> CommitAsync();
     }
 }
