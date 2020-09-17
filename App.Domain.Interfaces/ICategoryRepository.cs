@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Interfaces
 {
-    public interface ICategoryRepository : IReadOnlyRepository<int, Category>
+    public interface ICategoryRepository : IReadWriteRepository<int, Category>
     {
         Task<IEnumerable<Category>> GetCategoryWithProductsAsync();
     }

@@ -35,5 +35,10 @@ namespace App.Domain.Application
         {
             return await _catalogueUnitOfWork.CategoryRepository.GetCategoryWithProductsAsync();
         }
+
+        public async Task<Category> AddCategory(string name)
+        {
+            return await _catalogueUnitOfWork.CategoryRepository.AddAsync(new Category() { CategoryName = name });
+        }
     }
 }

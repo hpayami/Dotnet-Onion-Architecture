@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace App.Infrastructure.DataAccess
 {
-    public class CategoryRepository : ReadOnlyEFRespository<int, Category>, ICategoryRepository
+    public class CategoryRepository : ReadWriteEFRespository<int, Category>, ICategoryRepository
     {
         public CategoryRepository(DbContext context) : base(context)
         {

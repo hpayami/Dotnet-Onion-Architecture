@@ -9,6 +9,6 @@ namespace App.Domain.Interfaces
         Task<IEnumerable<Category>> GetCategoriesAsync();
         Task<IEnumerable<Product>> GetProductsAsync(int? categoryId);
         Task<IEnumerable<Category>> GetCategoriesWithProductsAsync();
-
+        Task<Category> AddCategory(string name);
     }
 }

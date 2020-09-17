@@ -1,9 +1,11 @@
 ﻿using App.Domain.Application;
+using App.Domain.Entities;
 using App.Domain.Interfaces;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -14,7 +16,7 @@ namespace App.Tests.Infrastructure.DataAccess
         private static string _connectionString;
 
         [Fact]
-        public async Task Test_ProductService()
+        public async Task Test_GetCategoriesandProducts()
         {
             DbContextOptions options = GetConnectionDetails();
 
@@ -33,6 +35,21 @@ namespace App.Tests.Infrastructure.DataAccess
 
                 foreach (var product in products)
                     System.Diagnostics.Debug.WriteLine(string.Format("Product: {0} ${1}", product.ProductName, product.UnitPrice));
+            }
+        }
+
+        [Fact]
+        public async Task Test_AddProduct()
+        {
+            DbContextOptions options = GetConnectionDetails();
+
+            using (CatalogueUnitOfWork catalogueUnitOfWork = new CatalogueUnitOfWork(new AppDataContext(options)))
+            {
+                IProductService productService = new ProductService(catalogueUnitOfWork);
+
+                Category category = await productService.AddCategory($"New Category {DateTime.Now.Ticks}");
+
+                System.Diagnostics.Debug.WriteLine($"{category.CategoryId} {category.CategoryName}");
             }
         }
 
