@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Entities", "App.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Interfaces", "App.Domain.Interfaces\App.Domain.Interfaces.csproj", "{E90233B1-75AA-400E-8AD1-C28FCEB4A706}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Application", "App.Domain.ServicesInterface\App.Domain.Application.csproj", "{C83EA9B6-EE6D-4AD4-981B-90E34617DF26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Application", "App.Domain.Application\App.Domain.Application.csproj", "{C83EA9B6-EE6D-4AD4-981B-90E34617DF26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CDDFF3FD-9437-404C-84A1-F07829D57EF1}"
 EndProject
