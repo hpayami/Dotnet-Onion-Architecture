@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace App.Domain.Entities
+namespace App.Domain.Shared
 {
     public static class Common
     {

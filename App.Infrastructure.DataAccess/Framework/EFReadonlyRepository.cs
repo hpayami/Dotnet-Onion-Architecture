@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using App.Domain.Interfaces;
+using App.Domain.Interfaces.Framework;
+using App.Domain.Shared;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using App.Domain.Entities;
-using App.Domain.Interfaces;
-using App.Domain.Interfaces.Framework;
 
 namespace App.Infrastructure.DataAccess.Framework
 {

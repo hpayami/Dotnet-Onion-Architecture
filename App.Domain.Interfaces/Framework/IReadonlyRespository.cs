@@ -1,8 +1,8 @@
-﻿using System;
+﻿using App.Domain.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using App.Domain.Entities;
 
 namespace App.Domain.Interfaces.Framework
 {
