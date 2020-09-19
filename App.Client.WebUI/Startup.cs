@@ -14,16 +14,19 @@ namespace App.Client.WebUI
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
+            System.Console.WriteLine("[1] Startup::Constructor()");
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // [1] This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            System.Console.WriteLine("[2] Startup::ConfigureServices()");
+
             services.AddDbContext<AppDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<AppDataContext>();
@@ -34,9 +37,11 @@ namespace App.Client.WebUI
             services.AddRazorPages();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // [2] This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            System.Console.WriteLine("[3] Startup::Configure()");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,5 +67,7 @@ namespace App.Client.WebUI
                 endpoints.MapRazorPages();
             });
         }
+
+
     }
 }
