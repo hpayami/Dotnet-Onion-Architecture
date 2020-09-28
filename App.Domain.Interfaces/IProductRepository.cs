@@ -3,7 +3,7 @@ using App.Domain.Interfaces.Framework;
 
 namespace App.Domain.Interfaces
 {
-    public interface IProductRepository : IReadOnlyRepository<int, Product>
+    public interface IProductRepository : IReadWriteRepository<int, Product>
     {
     }
 }
