@@ -14,7 +14,7 @@ namespace App.Infrastructure.DataAccess.DataContext
         public AppDataContext(DbContextOptions options) : base(options)
         {
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
