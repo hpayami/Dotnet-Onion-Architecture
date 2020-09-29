@@ -2,6 +2,9 @@
 using App.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace App.Client.WebUI.Pages.ManageProduct
@@ -10,13 +13,26 @@ namespace App.Client.WebUI.Pages.ManageProduct
     {
         private readonly ICatalogueUnitOfWork _catalogueUnitOfWork;
 
+        public IEnumerable<SelectListItem> CategoryList = new List<SelectListItem>();
+
+        [BindProperty]
+        public Product Product { get; set; }
+
         public EditModel(ICatalogueUnitOfWork catalogueUnitOfWork)
         {
             _catalogueUnitOfWork = catalogueUnitOfWork;
         }
 
-        [BindProperty]
-        public Product Product { get; set; }
+        public async Task LoadLookupsAsync(int selectedId)
+        {
+            CategoryList = (await _catalogueUnitOfWork.CategoryRepository.FindAllAsync())
+                           .Select(p => new SelectListItem()
+                           {
+                               Value = p.CategoryId.ToString(),
+                               Text = p.CategoryName,
+                               Selected = p.CategoryId == selectedId
+                           });
+        }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -26,6 +42,8 @@ namespace App.Client.WebUI.Pages.ManageProduct
             }
 
             Product = await _catalogueUnitOfWork.ProductRepository.FindAsync((int)id);
+
+            await LoadLookupsAsync(Product.CategoryId);
 
             if (Product == null)
             {
@@ -41,6 +59,7 @@ namespace App.Client.WebUI.Pages.ManageProduct
         {
             if (!ModelState.IsValid)
             {
+                await LoadLookupsAsync(Product.CategoryId);
                 return Page();
             }
 
