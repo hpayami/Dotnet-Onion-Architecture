@@ -16,7 +16,8 @@ namespace App.Infrastructure.DataAccess
 
         public async Task<IEnumerable<Category>> GetCategoryWithProductsAsync()
         {
-            return await ((AppDataContext)_context).Categories.Include(p => p.Products).ToListAsync();
+            return await FindAllIncludeAsync(p => p.Products);
+            
         }
     }
 }

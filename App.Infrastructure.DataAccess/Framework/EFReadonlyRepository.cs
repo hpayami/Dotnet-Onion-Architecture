@@ -112,7 +112,7 @@ namespace App.Infrastructure.DataAccess.Framework
         /// Return all records with includes
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<TEntity>> FindAllAsync(params Expression<Func<TEntity, object>>[] includes)
+        public async Task<IEnumerable<TEntity>> FindAllIncludeAsync(params Expression<Func<TEntity, object>>[] includes)
         {
             DbSet<TEntity> dbSet = _context.Set<TEntity>();
 
