@@ -109,6 +109,27 @@ namespace App.Infrastructure.DataAccess.Framework
         }
 
         /// <summary>
+        /// Return all records with includes
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> FindAllAsync(params Expression<Func<TEntity, object>>[] includes)
+        {
+            DbSet<TEntity> dbSet = _context.Set<TEntity>();
+
+            IQueryable<TEntity> query = null;
+
+            foreach (Expression<Func<TEntity, object>> includeExpression in includes)
+            {
+                query = dbSet.Include(includeExpression);
+            }
+
+            if (query != null)
+                return await query.ToListAsync();
+            else
+                return await dbSet.ToListAsync();
+        }
+
+        /// <summary>
         /// Return all records, paginate the results
         /// </summary>
         /// <param name="pageIndex"></param>

@@ -19,7 +19,7 @@ namespace App.Client.WebUI.Pages.ManageProduct
 
         public async Task OnGetAsync()
         {
-            Products = await _catalogueUnitOfWork.ProductRepository.FindAllAsync();
+            Products = await _catalogueUnitOfWork.ProductRepository.FindAllAsync(p => p.Category);
         }
     }
 }
