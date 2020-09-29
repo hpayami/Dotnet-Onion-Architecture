@@ -52,7 +52,7 @@ namespace App.Infrastructure.DataAccess.Migrations
                 {
                     CategoryId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(maxLength: 256, nullable: true)
+                    CategoryName = table.Column<string>(maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -171,7 +171,7 @@ namespace App.Infrastructure.DataAccess.Migrations
                 {
                     ProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(maxLength: 256, nullable: true),
+                    ProductName = table.Column<string>(maxLength: 256, nullable: false),
                     UnitPrice = table.Column<decimal>(nullable: false),
                     Discontinued = table.Column<bool>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
