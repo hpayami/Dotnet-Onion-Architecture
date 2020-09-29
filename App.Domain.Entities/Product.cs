@@ -7,11 +7,13 @@ namespace App.Domain.Entities
     {
         [Key]
         public int ProductId { get; set; }
-        
-        [MaxLength(256)]
+
+        [Required]
+        [MaxLength(256)]        
         public string ProductName { get; set; }
-        
-        [DataType(DataType.Currency)]
+
+        [Required]
+        [DataType(DataType.Currency)]        
         public decimal UnitPrice { get; set; }
         
         public bool Discontinued { get; set; }
@@ -26,7 +28,7 @@ namespace App.Domain.Entities
 
             if (ProductId == 0)
             {
-                if (Discontinued == false)
+                if (Discontinued == true)
                 {
                     errors.Add(new ValidationResult("You cannot add a discontinued product"));
                 }

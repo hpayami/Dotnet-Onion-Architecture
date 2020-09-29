@@ -2,6 +2,9 @@
 using App.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace App.Client.WebUI.Pages.ManageProduct
@@ -10,13 +13,27 @@ namespace App.Client.WebUI.Pages.ManageProduct
     {
         private readonly ICatalogueUnitOfWork _catalogueUnitOfWork;
 
+        public IEnumerable<SelectListItem> CategoryList = new List<SelectListItem>();
+
         public CreateModel(ICatalogueUnitOfWork catalogueUnitOfWork)
         {
             _catalogueUnitOfWork = catalogueUnitOfWork;
         }
 
-        public IActionResult OnGet()
+        public async Task LoadLookupsAsync()
         {
+            CategoryList = (await _catalogueUnitOfWork.CategoryRepository.FindAllAsync())
+                           .Select(p => new SelectListItem() 
+                           { 
+                               Value = p.CategoryId.ToString(), 
+                               Text = p.CategoryName 
+                           });
+        }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            await LoadLookupsAsync();
+
             return Page();
         }
 
@@ -29,6 +46,7 @@ namespace App.Client.WebUI.Pages.ManageProduct
         {
             if (!ModelState.IsValid)
             {
+                await LoadLookupsAsync();
                 return Page();
             }
 
