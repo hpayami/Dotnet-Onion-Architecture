@@ -45,7 +45,7 @@ namespace App.Client.WebUI.Pages.ManageCategory
 
             if (Category != null)
             {
-                await _catalogueUnitOfWork.CategoryRepository.RemoveAsync(Category);
+                _catalogueUnitOfWork.CategoryRepository.Remove(Category);
                 await _catalogueUnitOfWork.CommitAsync();
             }
 

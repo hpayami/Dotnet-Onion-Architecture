@@ -25,8 +25,7 @@ namespace App.Infrastructure.DataAccess.Framework
         /// <returns></returns>
         public async Task<TEntity> AddAsync(TEntity entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
-            //await _context.SaveChangesAsync();
+            await _context.Set<TEntity>().AddAsync(entity);            
 
             return entity;
         }
@@ -39,7 +38,6 @@ namespace App.Infrastructure.DataAccess.Framework
         public async Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await _context.Set<TEntity>().AddRangeAsync(entities);
-            //await _context.SaveChangesAsync();
 
             return entities;
         }
@@ -49,10 +47,9 @@ namespace App.Infrastructure.DataAccess.Framework
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task RemoveAsync(TEntity entity)
+        public void Remove(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
-            // await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -60,10 +57,9 @@ namespace App.Infrastructure.DataAccess.Framework
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public async Task RemoveRangeAsync(IEnumerable<TEntity> entities)
+        public void RemoveRange(IEnumerable<TEntity> entities)
         {
             _context.Set<TEntity>().RemoveRange(entities);
-            //await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -71,10 +67,9 @@ namespace App.Infrastructure.DataAccess.Framework
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task UpdateAsync(TEntity entity)
+        public void Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
-            // await _context.SaveChangesAsync();
         }
     }
 }

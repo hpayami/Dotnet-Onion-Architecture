@@ -45,7 +45,7 @@ namespace App.Client.WebUI.Pages.ManageProduct
 
             if (Product != null)
             {
-                await _catalogueUnitOfWork.ProductRepository.RemoveAsync(Product);
+                _catalogueUnitOfWork.ProductRepository.Remove(Product);
                 await _catalogueUnitOfWork.CommitAsync();
             }
 

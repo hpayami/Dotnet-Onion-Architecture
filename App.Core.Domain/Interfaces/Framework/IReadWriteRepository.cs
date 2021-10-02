@@ -15,10 +15,10 @@ namespace App.Core.Domain.Interfaces.Framework
         Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
 
         // Remove     
-        Task RemoveAsync(TEntity entity);
-        Task RemoveRangeAsync(IEnumerable<TEntity> entities);
+        void Remove(TEntity entity);
+        void RemoveRange(IEnumerable<TEntity> entities);
 
         // update     
-        Task UpdateAsync(TEntity entity);
+        void Update(TEntity entity);
     }
 }

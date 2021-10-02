@@ -63,7 +63,7 @@ namespace App.Client.WebUI.Pages.ManageProduct
                 return Page();
             }
 
-            await _catalogueUnitOfWork.ProductRepository.UpdateAsync(Product);
+            _catalogueUnitOfWork.ProductRepository.Update(Product);
             await _catalogueUnitOfWork.CommitAsync();
 
             return RedirectToPage("./Index");
