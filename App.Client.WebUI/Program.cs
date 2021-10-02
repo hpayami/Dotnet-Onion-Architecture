@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Formatting.Compact;
 using System;
+using System.IO;
 
 namespace App.Client.WebUI
 {
@@ -9,10 +12,15 @@ namespace App.Client.WebUI
     {
         public static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                                   .SetBasePath(Directory.GetCurrentDirectory())
+                                   .AddJsonFile("appsettings.json")
+                                   .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+                                   .Build();
+
             // setup serilog
             Log.Logger = new LoggerConfiguration()
-                            .Enrich.FromLogContext()
-                            .WriteTo.Console()
+                            .ReadFrom.Configuration(configuration)
                             .CreateLogger();
 
             try
