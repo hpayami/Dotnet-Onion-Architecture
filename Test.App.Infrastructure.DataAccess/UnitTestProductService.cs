@@ -1,6 +1,6 @@
-﻿using App.Domain.Application;
-using App.Domain.Entities;
-using App.Domain.Interfaces;
+﻿using App.Core.Application;
+using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;

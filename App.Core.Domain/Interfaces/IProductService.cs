@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using App.Domain.Entities;
+using App.Core.Domain.Entities;
 
-namespace App.Domain.Interfaces
+namespace App.Core.Domain.Interfaces
 {
     public interface IProductService
     {

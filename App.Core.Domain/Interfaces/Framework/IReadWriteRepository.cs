@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace App.Domain.Interfaces.Framework
+namespace App.Core.Domain.Interfaces.Framework
 {
     /// <summary>
     /// Respository is a collection like interface to an TEntity with a TKey

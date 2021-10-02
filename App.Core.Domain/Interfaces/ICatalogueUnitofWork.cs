@@ -1,7 +1,7 @@
 ﻿using System;
-using App.Domain.Interfaces.Framework;
+using App.Core.Domain.Interfaces.Framework;
 
-namespace App.Domain.Interfaces
+namespace App.Core.Domain.Interfaces
 {
     public interface ICatalogueUnitOfWork : IUnitOfWork, IDisposable
     {

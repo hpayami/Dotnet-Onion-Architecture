@@ -1,5 +1,5 @@
-﻿using App.Domain.Interfaces;
-using App.Domain.Interfaces.Framework;
+﻿using App.Core.Domain.Interfaces;
+using App.Core.Domain.Interfaces.Framework;
 using static App.Domain.Shared.Common;
 using Microsoft.EntityFrameworkCore;
 using System;

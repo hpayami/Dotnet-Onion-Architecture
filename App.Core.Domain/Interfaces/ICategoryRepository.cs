@@ -1,9 +1,9 @@
-﻿using App.Domain.Entities;
-using App.Domain.Interfaces.Framework;
+﻿using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces.Framework;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace App.Domain.Interfaces
+namespace App.Core.Domain.Interfaces
 {
     public interface ICategoryRepository : IReadWriteRepository<int, Category>
     {

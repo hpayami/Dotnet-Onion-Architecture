@@ -1,5 +1,5 @@
-using App.Domain.Application;
-using App.Domain.Interfaces;
+using App.Core.Application;
+using App.Core.Domain.Interfaces;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.AspNetCore.Builder;

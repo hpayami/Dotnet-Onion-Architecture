@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using App.Domain.Entities;
-using App.Domain.Interfaces;
+using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 using App.Infrastructure.DataAccess.Framework;
 
 namespace App.Infrastructure.DataAccess

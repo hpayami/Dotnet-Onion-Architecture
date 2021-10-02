@@ -1,5 +1,5 @@
-﻿using App.Domain.Entities;
-using App.Domain.Interfaces;
+﻿using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Threading.Tasks;

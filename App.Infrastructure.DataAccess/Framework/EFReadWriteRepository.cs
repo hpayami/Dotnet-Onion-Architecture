@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using App.Domain.Interfaces.Framework;
+using App.Core.Domain.Interfaces.Framework;
 
 namespace App.Infrastructure.DataAccess.Framework
 {

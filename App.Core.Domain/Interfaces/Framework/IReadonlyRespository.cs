@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static App.Domain.Shared.Common;
 
-namespace App.Domain.Interfaces.Framework
+namespace App.Core.Domain.Interfaces.Framework
 {
     /// <summary>
     /// Respository is a collection like interface to an TEntity with a TKey

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Domain.Interfaces.Framework;
+using App.Core.Domain.Interfaces.Framework;
 
-namespace App.Domain.Interfaces
+namespace App.Core.Domain.Interfaces
 {
     public class PaginatedList<TEntity> : List<TEntity>, IPaginated
     {

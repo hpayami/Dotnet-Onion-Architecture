@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using App.Domain.Entities;
-using App.Domain.Interfaces;
+using App.Core.Domain.Entities;
+using App.Core.Domain.Interfaces;
 
-namespace App.Domain.Application
+namespace App.Core.Application
 {
     public class ProductService : IProductService
     {
