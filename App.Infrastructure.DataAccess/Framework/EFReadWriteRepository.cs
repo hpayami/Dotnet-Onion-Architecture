@@ -23,11 +23,9 @@ namespace App.Infrastructure.DataAccess.Framework
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public void Add(TEntity entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);            
-
-            return entity;
+            _context.Set<TEntity>().Add(entity);            
         }
 
         /// <summary>
@@ -35,11 +33,9 @@ namespace App.Infrastructure.DataAccess.Framework
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities)
+        public void AddRange(IEnumerable<TEntity> entities)
         {
-            await _context.Set<TEntity>().AddRangeAsync(entities);
-
-            return entities;
+            _context.Set<TEntity>().AddRange(entities);
         }
 
         /// <summary>

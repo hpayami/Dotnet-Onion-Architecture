@@ -32,7 +32,7 @@ namespace App.Client.WebUI.Pages.ManageCategory
                 return Page();
             }
 
-            await _catalogueUnitOfWork.CategoryRepository.AddAsync(Category);
+            _catalogueUnitOfWork.CategoryRepository.Add(Category);
             await _catalogueUnitOfWork.CommitAsync();
             
             return RedirectToPage("./Index");

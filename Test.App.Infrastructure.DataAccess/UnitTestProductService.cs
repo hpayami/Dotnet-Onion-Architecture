@@ -5,6 +5,8 @@ using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Moq;
 using System;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,11 +20,15 @@ namespace App.Tests.Infrastructure.DataAccess
         [Fact]
         public async Task Test_GetCategoriesAndProducts()
         {
+            // mock the logger
+            Mock<ILogger<ProductService>> mock = new Mock<ILogger<ProductService>>();
+            ILogger<ProductService> logger = mock.Object;
+
             DbContextOptions options = GetConnectionDetails();
 
             using (CatalogueUnitOfWork catalogueUnitOfWork = new CatalogueUnitOfWork(new AppDataContext(options)))
             {
-                IProductService productService = new ProductService(catalogueUnitOfWork);
+                IProductService productService = new ProductService(logger, catalogueUnitOfWork);
 
                 var categories = await productService.GetCategoriesAsync();
                 Assert.NotEmpty(categories);
@@ -41,11 +47,15 @@ namespace App.Tests.Infrastructure.DataAccess
         [Fact]
         public async Task Test_AddProduct()
         {
+            // mock the logger
+            Mock<ILogger<ProductService>> mock = new Mock<ILogger<ProductService>>();
+            ILogger<ProductService> logger = mock.Object;
+
             DbContextOptions options = GetConnectionDetails();
 
             using (CatalogueUnitOfWork catalogueUnitOfWork = new CatalogueUnitOfWork(new AppDataContext(options)))
             {
-                IProductService productService = new ProductService(catalogueUnitOfWork);
+                IProductService productService = new ProductService(logger, catalogueUnitOfWork);
 
                 Category category = await productService.AddCategory($"New Category {DateTime.Now.Ticks}");
                 await catalogueUnitOfWork.CommitAsync();

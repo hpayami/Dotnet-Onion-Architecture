@@ -50,7 +50,7 @@ namespace App.Client.WebUI.Pages.ManageProduct
                 return Page();
             }
 
-            await _catalogueUnitOfWork.ProductRepository.AddAsync(Product);
+            _catalogueUnitOfWork.ProductRepository.Add(Product);
             await _catalogueUnitOfWork.CommitAsync();
 
             return RedirectToPage("./Index");

@@ -11,14 +11,14 @@ namespace App.Core.Domain.Interfaces.Framework
     public interface IReadWriteRepository<TKey, TEntity> : IReadOnlyRepository<TKey, TEntity> where TEntity : class
     {
         // Add
-        Task<TEntity> AddAsync(TEntity entity);
-        Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
+        void Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entities);
 
         // Remove     
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
 
-        // update     
+        // Update     
         void Update(TEntity entity);
     }
 }

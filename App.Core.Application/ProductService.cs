@@ -48,7 +48,12 @@ namespace App.Core.Application
         {
             _logger.LogInformation("Calling: CategoryRepository.AddAsync()");
 
-            return await _catalogueUnitOfWork.CategoryRepository.AddAsync(new Category() { CategoryName = name });
+            Category category = new Category() { CategoryName = name };
+
+            _catalogueUnitOfWork.CategoryRepository.Add(category);
+            await _catalogueUnitOfWork.CommitAsync();
+
+            return category;
         }
     }
 }
