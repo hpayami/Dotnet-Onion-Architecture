@@ -34,7 +34,7 @@ namespace App.Client.WebUI.Pages.ManageCategory
 
             _catalogueUnitOfWork.CategoryRepository.Add(Category);
             await _catalogueUnitOfWork.CommitAsync();
-            
+
             return RedirectToPage("./Index");
         }
     }

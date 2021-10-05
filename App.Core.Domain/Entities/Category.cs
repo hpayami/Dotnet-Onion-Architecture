@@ -10,8 +10,8 @@ namespace App.Core.Domain.Entities
 
         [Required]
         [MaxLength(256)]
-        public string CategoryName { get; set; }        
-        
+        public string CategoryName { get; set; }
+
         public ICollection<Product> Products { get; set; }
 
         public Category()

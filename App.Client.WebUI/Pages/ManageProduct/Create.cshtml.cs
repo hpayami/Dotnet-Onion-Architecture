@@ -23,10 +23,10 @@ namespace App.Client.WebUI.Pages.ManageProduct
         public async Task LoadLookupsAsync()
         {
             CategoryList = (await _catalogueUnitOfWork.CategoryRepository.FindAllAsync())
-                           .Select(p => new SelectListItem() 
-                           { 
-                               Value = p.CategoryId.ToString(), 
-                               Text = p.CategoryName 
+                           .Select(p => new SelectListItem()
+                           {
+                               Value = p.CategoryId.ToString(),
+                               Text = p.CategoryName
                            });
         }
 

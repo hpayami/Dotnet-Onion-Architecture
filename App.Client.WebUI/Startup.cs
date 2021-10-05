@@ -30,7 +30,7 @@ namespace App.Client.WebUI
             services.AddDbContext<AppDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<AppDataContext>();
-            
+
             services.AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
 
@@ -67,7 +67,5 @@ namespace App.Client.WebUI
                 endpoints.MapRazorPages();
             });
         }
-
-
     }
 }

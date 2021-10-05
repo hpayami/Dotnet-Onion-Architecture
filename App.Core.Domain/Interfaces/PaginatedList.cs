@@ -1,6 +1,6 @@
-﻿using System;
+﻿using App.Core.Domain.Interfaces.Framework;
+using System;
 using System.Collections.Generic;
-using App.Core.Domain.Interfaces.Framework;
 
 namespace App.Core.Domain.Interfaces
 {

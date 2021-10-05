@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace App.Core.Domain.Interfaces.Framework
 {
@@ -12,13 +11,15 @@ namespace App.Core.Domain.Interfaces.Framework
     {
         // Add
         void Add(TEntity entity);
+
         void AddRange(IEnumerable<TEntity> entities);
 
-        // Remove     
+        // Remove
         void Remove(TEntity entity);
+
         void RemoveRange(IEnumerable<TEntity> entities);
 
-        // Update     
+        // Update
         void Update(TEntity entity);
     }
 }

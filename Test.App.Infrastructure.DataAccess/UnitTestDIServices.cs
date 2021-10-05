@@ -1,13 +1,13 @@
-﻿using App.Core.Domain.Interfaces;
-using App.Core.Application;
+﻿using App.Core.Application;
+using App.Core.Domain.Interfaces;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Xunit;
 using System.Threading.Tasks;
+using Xunit;
 
 /******************************************************************************
  Dependency Injection Unit Test: Using a test service
@@ -17,7 +17,6 @@ namespace App.Tests.Infrastructure.DataAccess
 {
     public class UnitTestDIServices
     {
-
         public class App
         {
             private readonly IProductService _productService;
@@ -46,10 +45,10 @@ namespace App.Tests.Infrastructure.DataAccess
                 foreach (var product in products)
                     _logger.LogInformation(string.Format("Product: {0} ${1}", product.ProductName, product.UnitPrice));
 
-                _logger.LogInformation("Completed.");                
+                _logger.LogInformation("Completed.");
             }
         }
-        
+
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // register objects
@@ -70,7 +69,7 @@ namespace App.Tests.Infrastructure.DataAccess
             var configuration = configurationBuilder.AddJsonFile("appsettings.json", optional: false)
                                                     .Build();
             // setup dependency
-            ConfigureServices(services, configuration);            
+            ConfigureServices(services, configuration);
             var serviceProvider = services.BuildServiceProvider();
 
             // entry to run app

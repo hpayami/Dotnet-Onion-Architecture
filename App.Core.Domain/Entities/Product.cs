@@ -9,17 +9,17 @@ namespace App.Core.Domain.Entities
         public int ProductId { get; set; }
 
         [Required]
-        [MaxLength(256)]        
+        [MaxLength(256)]
         public string ProductName { get; set; }
 
         [Required]
-        [DataType(DataType.Currency)]        
+        [DataType(DataType.Currency)]
         public decimal UnitPrice { get; set; }
-        
+
         public bool Discontinued { get; set; }
-        
+
         public int CategoryId { get; set; }
-        
+
         public Category Category { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

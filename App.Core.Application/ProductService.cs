@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using App.Core.Domain.Entities;
+﻿using App.Core.Domain.Entities;
 using App.Core.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace App.Core.Application
 {
     public class ProductService : IProductService
     {
         // inject the dependencies
-        private readonly ILogger<ProductService> _logger;        
+        private readonly ILogger<ProductService> _logger;
+
         private readonly ICatalogueUnitOfWork _catalogueUnitOfWork;
 
         public ProductService(ILogger<ProductService> logger, ICatalogueUnitOfWork catalogueUnitOfWork)

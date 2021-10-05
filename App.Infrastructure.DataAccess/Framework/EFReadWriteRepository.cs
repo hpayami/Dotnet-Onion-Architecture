@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using App.Core.Domain.Interfaces.Framework;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using App.Core.Domain.Interfaces.Framework;
 
 namespace App.Infrastructure.DataAccess.Framework
 {
@@ -25,7 +24,7 @@ namespace App.Infrastructure.DataAccess.Framework
         /// <returns></returns>
         public void Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(entity);            
+            _context.Set<TEntity>().Add(entity);
         }
 
         /// <summary>

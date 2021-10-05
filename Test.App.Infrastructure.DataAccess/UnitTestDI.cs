@@ -1,6 +1,5 @@
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Logging;
 using Xunit;
 
 // Tools -> NuGet Package Manager -> Pacakage Manager Console
@@ -58,7 +57,7 @@ namespace App.Tests.Infrastructure.DataAccess
     {
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
-            // register 
+            // register
             serviceCollection.AddLogging(configure => configure.AddDebug())
                              .AddTransient<App>()
                              .AddTransient<ITestService, TestService>();
@@ -73,7 +72,7 @@ namespace App.Tests.Infrastructure.DataAccess
 
             // create service provider
             var serviceProvider = serviceCollection.BuildServiceProvider();
-           
+
             // entry to run app
             serviceProvider.GetService<App>().Start();
         }

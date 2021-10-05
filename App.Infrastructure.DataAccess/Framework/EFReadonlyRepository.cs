@@ -1,12 +1,12 @@
 ﻿using App.Core.Domain.Interfaces;
 using App.Core.Domain.Interfaces.Framework;
-using static App.Domain.Shared.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using static App.Domain.Shared.Common;
 
 namespace App.Infrastructure.DataAccess.Framework
 {
@@ -62,7 +62,6 @@ namespace App.Infrastructure.DataAccess.Framework
 
             return items;
         }
-
 
         /// <summary>
         /// Find using a filter, paginate the results

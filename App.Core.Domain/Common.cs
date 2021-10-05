@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace App.Domain.Shared
+﻿namespace App.Domain.Shared
 {
     public static class Common
     {

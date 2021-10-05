@@ -15,7 +15,7 @@ namespace App.Client.WebUI.Pages.ManageCategory
         public IndexModel(ICatalogueUnitOfWork catalogueUnitOfWork)
         {
             _catalogueUnitOfWork = catalogueUnitOfWork;
-        }        
+        }
 
         public async Task OnGetAsync()
         {
