@@ -1,0 +1,30 @@
+﻿@page
+@model App.Client.WebUI.Pages.BulkInsert.UploadModel
+@{
+    ViewData["Title"] = "Upload File";
+}
+
+<form enctype="multipart/form-data" method="post">
+
+    <label>Upload a CSV file to import</label>
+
+    <dl>
+        <dt>
+            <label>@Model.Message</label>
+        </dt>
+        <dd>
+            <input asp-for="UploadedFile" type="file" data-val-required="This is required" />
+            <span asp-validation-for="UploadedFile"></span>
+        </dd>
+    </dl>
+
+    <input asp-page-handler="Upload" type="submit" value="Upload" class="btn btn-primary" />
+
+    @if (Model.UploadedFile != null)
+    { 
+        <div>
+            <label>The file was uploaded successfully: @Model.UploadedFile.FileName</label>
+        </div>
+    }
+
+</form>

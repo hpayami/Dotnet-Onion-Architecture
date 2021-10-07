@@ -1,0 +1,25 @@
+﻿@page
+@model App.Client.WebUI.Pages.BulkInsert.ViewDataModel
+@{
+    ViewData["Title"] = "View Data";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Data
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BulkImports)
+        { 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

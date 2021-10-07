@@ -10,6 +10,7 @@ namespace App.Infrastructure.DataAccess.DataContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<BulkImport> BulkImports { get; set; }
 
         public AppDataContext(DbContextOptions options) : base(options)
         {

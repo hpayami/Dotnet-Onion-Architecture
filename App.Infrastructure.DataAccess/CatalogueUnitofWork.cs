@@ -1,5 +1,6 @@
 ﻿using App.Core.Domain.Interfaces;
 using App.Infrastructure.DataAccess.DataContext;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace App.Infrastructure.DataAccess
@@ -10,6 +11,7 @@ namespace App.Infrastructure.DataAccess
 
         public IProductRepository ProductRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
+        public IBulkImportRepository BulkImportRepository { get; }
 
         public CatalogueUnitOfWork(AppDataContext context)
         {
@@ -17,12 +19,17 @@ namespace App.Infrastructure.DataAccess
 
             ProductRepository = new ProductRepository(_context);
             CategoryRepository = new CategoryRepository(_context);
+            BulkImportRepository = new BulkImportRepository(_context);
         }
 
         public async Task<int> CommitAsync()
-        {
-            // read-only
+        {        
             return await _context.SaveChangesAsync(); ;
+        }
+
+        public async Task<int> CommitAsync(CancellationToken cancellationToken)
+        {
+            return await _context.SaveChangesAsync(cancellationToken);
         }
 
         public void Dispose()

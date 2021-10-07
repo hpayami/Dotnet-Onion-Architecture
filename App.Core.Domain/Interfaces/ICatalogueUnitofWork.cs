@@ -7,5 +7,6 @@ namespace App.Core.Domain.Interfaces
     {
         ICategoryRepository CategoryRepository { get; }
         IProductRepository ProductRepository { get; }
+        IBulkImportRepository BulkImportRepository { get; }
     }
 }

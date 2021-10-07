@@ -5,10 +5,13 @@
     ViewData["Title"] = "Home page";
 }
 
-<h3><a asp-page="./Categories">Shop</a></h3>
-
+<h3><a asp-page="/Categories">Shop</a></h3>
 <hr />
 
-<h3>Admin</h3>
-<h4><a asp-page="./ManageCategory/Index">Manage Categories</a></h4>
-<h4><a asp-page="./ManageProduct/Index">Manage Products</a></h4>
+<h3><a asp-page="/BulkInsert/Upload">Upload File</a></h3>
+<h3><a asp-page="/BulkInsert/ViewData">View Data</a></h3>
+<hr />
+
+<h3>Shop Admin</h3>
+<h4><a asp-page="/ManageCategory/Index">Manage Categories</a></h4>
+<h4><a asp-page="/ManageProduct/Index">Manage Products</a></h4>

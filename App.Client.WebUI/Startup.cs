@@ -1,4 +1,5 @@
 using App.Core.Application;
+using App.Core.Domain.Entities;
 using App.Core.Domain.Interfaces;
 using App.Infrastructure.DataAccess;
 using App.Infrastructure.DataAccess.DataContext;
@@ -27,12 +28,18 @@ namespace App.Client.WebUI
         {
             System.Console.WriteLine("[2] Startup::ConfigureServices()");
 
+            // Application Settings
+            AppSettings appSettings = new AppSettings();
+            Configuration.Bind("FileUpload", appSettings.FileUpload);
+            services.AddSingleton(appSettings);
+
             services.AddDbContext<AppDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<AppDataContext>();
 
             services.AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IFileService, FileService>();
 
             services.AddRazorPages();
         }
