@@ -28,7 +28,7 @@ namespace App.Client.WebUI
             System.Console.WriteLine("[2] Startup::ConfigureServices()");
 
             services.AddDbContext<AppDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<AppDataContext>();
 
             services.AddTransient<ICatalogueUnitOfWork, CatalogueUnitOfWork>();
